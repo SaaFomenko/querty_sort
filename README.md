@@ -1,2 +1,2 @@
-# querty_sort
-Querty sorting algorithm library
+# quick_sort
+Quick sorting algorithm library
