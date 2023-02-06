@@ -1,5 +1,6 @@
 #include <iostream>
 #include "quick_sort.h"
+#include "./lib/rand_of_range/rand_of_range.h"
 
 
 int pivoting(int* arr, int size, int pi)
@@ -36,16 +37,8 @@ void quick_sort(int* arr, int size)
 {
 	if (size != 1)
 	{
-		int pi = 0;
-		std::cout << "pi = " << pi << std::endl;
-
+		int pi = rand_of_range(0, size - 1);
 		int border = pivoting(arr, size, pi);
-
-		std::cout << "border = " << border << std::endl;
-
-		if (border > pi)
-		{
-			quick_sort(arr, size);
-		}
-	}	
+		
+	}
 }
