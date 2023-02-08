@@ -1,3 +1,4 @@
+#include <iostream>
 #include "quick_sort.h"
 
 
@@ -34,11 +35,15 @@ void quick_sort(int* arr, int size)
 		int pi = size / 2;
 		int border = pivoting(arr, size, pi);
 
+		std::cout << pi << " vs " << border << std::endl;
+
 		if (pi < border) 
 			quick_sort(arr, border);
 
 		if (border < pi) 
+		{
+			std::cout << border << " size: " << size << std::endl;
 			quick_sort(&arr[border], size);
-
+		}
 	}
 }
