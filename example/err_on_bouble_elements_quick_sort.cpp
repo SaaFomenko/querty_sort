@@ -23,9 +23,9 @@ void quick_sort(int* arr, int size)
 
 	int i = 0;
 	int j = size - 1;
-	int& pivot = arr[size / 2];
+	int pivot = arr[size / 2];
 
-	while (i <= j)
+	while (i < j)
 	{
 		while (arr[i] < pivot)
 		{
@@ -41,7 +41,6 @@ void quick_sort(int* arr, int size)
 //		++i;
 //		--j;
 	}
-
 
 /*	if (arr[i] > pivot)
 	{
