@@ -1,58 +1,60 @@
 #include <iostream>
 #include "quick_sort.h"
+// #include "./lib/rand_of_range/rand_of_range.h"
 
 
-void swap(int& i, int& j)
+int pivoting(int* arr, int size, int pi)
 {
-	int temp = i;
-	i = j;
-	j = temp;
+	int left = 0;
+	int right = size - 1;
+	int pivot = arr[pi];
+
+	while (true)
+	{
+		while (arr[left] < pivot)
+		{
+			++left;
+		}
+		while (arr[right] > pivot)
+		{
+			--right;
+		}
+
+		if (left >= right)
+		{
+			return left;
+		}
+
+		int temp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = temp;
+		++left;
+		--right;
+	}
 }
 
 void quick_sort(int* arr, int size)
 {
-	for (int i = 0; i < size; ++i)
+	if (size == 1)
 	{
-		std::cout << arr[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << "size = " << size << std::endl;
-
-	if (size < 3) 
 		return;
-
-	int i = 0;
-	int j = size - 1;
-	int& pivot = arr[size / 2];
-
-	while (i <= j)
-	{
-		while (arr[i] < pivot)
-		{
-			++i;
-		}
-
-		while (arr[j] > pivot)
-		{
-			--j;
-		}
-
-		swap(arr[i], arr[j]);
-//		++i;
-//		--j;
 	}
+//		int pi = rand_of_range(0, size - 1);
+		int pi = size / 2;
+		int border = pivoting(arr, size, pi);
 
-
-/*	if (arr[i] > pivot)
-	{
-		swap(arr[i], arr[size / 2]);
-	}
+/*		std::cout << "border arr[" << border << "] = " << arr[border] << std::endl;
+		for (int i = 0; i < size; ++i)
+		{
+			std::cout << arr[i] << " "; 
+		}
+		std::cout << std::endl; 
 */
-	
-	int left_size = i + 1;
-//	int right_size = size - left_size;
-	int right_size = size - i;
+		if (size == 2 && arr[0] <= arr[border])
+		{
+			return;
+		}
 
-	quick_sort(arr, left_size);
-	quick_sort(&arr[i], right_size);
+		quick_sort(arr, border + 1);
+		quick_sort(&arr[border], size - border);
 }
